@@ -13,8 +13,6 @@ app.get("/cpu", (req, res, next) => {
 app.get("/cpuTest", (req, res, next) => {
 	let time = req.query.time;
 	let cputest = req.query.percentage;
-	console.log(time, cputest)
-	console.log("stress -c 1 -t " + time + " & cpulimit -p $( pidof -o $! stress ) -l " + cputest)
 	shell.exec("stress -c 1 -t " + time + " & cpulimit -p $( pidof -o $! stress ) -l " + cputest)
 	return res.send("1")
 });
